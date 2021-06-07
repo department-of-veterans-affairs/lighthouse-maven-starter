@@ -1,0 +1,1 @@
+# lighthouse-maven-starter

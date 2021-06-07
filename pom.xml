@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>gov.va.api.health</groupId>
   <artifactId>lighthouse-maven-starter</artifactId>
-  <version>0.0.0-SNAPSHOT</version>
+  <version>0.0.0</version>
   <packaging>pom</packaging>
   <properties>
     <checkstyle.version>8.29</checkstyle.version>

@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>gov.va.api.health</groupId>
   <artifactId>lighthouse-maven-starter</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <checkstyle.version>8.29</checkstyle.version>
@@ -15,7 +15,8 @@
     <formatter-maven-plugin.version>2.11.0</formatter-maven-plugin.version>
     <git.allowedBranchNames><![CDATA[^([a-z0-9]{40}|code-scanning|dependabot/.*|main|master|release/.*|PR-[0-9]+|(.*/)?[A-Z]{2,10}-[0-9]+-.*)$]]></git.allowedBranchNames>
     <git.enforceBranchNames>true</git.enforceBranchNames>
-    <git-commit-id-plugin.version>4.0.4</git-commit-id-plugin.version>
+    <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
+    <github.repository-name>${project.artifactId}</github.repository-name>
     <gmavenplus-plugin.version>1.12.1</gmavenplus-plugin.version>
     <google-java-format.version>1.10.0</google-java-format.version>
     <groovy.version>3.0.8</groovy.version>
@@ -45,10 +46,11 @@
       </activation>
       <build>
         <plugins>
+          <!-- Git commit -->
           <plugin>
-            <groupId>pl.project13.maven</groupId>
-            <artifactId>git-commit-id-plugin</artifactId>
-            <version>${git-commit-id-plugin.version}</version>
+            <groupId>io.github.git-commit-id</groupId>
+            <artifactId>git-commit-id-maven-plugin</artifactId>
+            <version>${git-commit-id-maven-plugin.version}</version>
             <configuration>
               <verbose>false</verbose>
             </configuration>
@@ -439,8 +441,12 @@
   </profiles>
   <distributionManagement>
     <repository>
-      <id>health-apis-releases</id>
-      <url>https://tools.health.dev-developer.va.gov/nexus/repository/health-apis-releases/</url>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/department-of-veterans-affairs/${github.repository-name}</url>
     </repository>
+    <snapshotRepository>
+      <id>not-allowed</id>
+      <url>http://httpstat.us/418</url>
+    </snapshotRepository>
   </distributionManagement>
 </project>
